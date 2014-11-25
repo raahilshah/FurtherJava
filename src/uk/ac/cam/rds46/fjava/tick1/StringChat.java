@@ -23,7 +23,11 @@ public class StringChat {
 			return;
 		}
 
-		// "s" is declared final here because:.
+		// "s" is declared final here because the Thread instance (output)
+		// can remain in memory after the main method returns. 
+		// The scope of "s" is the main method and so if main returns
+		// "s" goes out of scope, but the copy in "output" still can be accessed
+		// which would make the inner and outer copy of "s" out of sync. 
 		
 		try {
 			final Socket s = new Socket(server, port);
