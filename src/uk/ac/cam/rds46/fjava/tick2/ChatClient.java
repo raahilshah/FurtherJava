@@ -38,7 +38,7 @@ public class ChatClient {
 		int port = 0;
 
 		// Testing.
-//		args = new String[] {"java-1b.cl.cam.ac.uk", "15004" };
+		//		args = new String[] {"java-1b.cl.cam.ac.uk", "15004" };
 
 		try {
 			if (args.length < 2) throw new IllegalArgumentException();
