@@ -28,12 +28,6 @@ public class ClientHandler {
 		clientMessages = new SafeMessageQueue<Message>();
 		multiQueue.register(clientMessages);
 		
-		nickname = "Anonymous" + (new Random()).nextInt(100000); 
-		StatusMessage connectionMsg = new StatusMessage(nickname + " connected from " 
-			+ socket.getInetAddress().getCanonicalHostName() + ".");
-		multiQueue.put(connectionMsg);
-		
-		
 		try {
 			database.incrementLogins();
 			List<RelayMessage> list = database.getRecent();
@@ -43,6 +37,11 @@ public class ClientHandler {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
+		nickname = "Anonymous" + (new Random()).nextInt(100000); 
+		StatusMessage connectionMsg = new StatusMessage(nickname + " connected from " 
+			+ socket.getInetAddress().getCanonicalHostName() + ".");
+		multiQueue.put(connectionMsg);
 		
 		Thread incomingHandlerThrd = new Thread() {
 			@Override
@@ -65,7 +64,7 @@ public class ClientHandler {
 								} catch (SQLException e) {
 									e.printStackTrace();
 								}
-							}
+															}
 						} catch (ClassNotFoundException e) {
 							e.printStackTrace();
 						}
